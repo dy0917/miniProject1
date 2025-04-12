@@ -7,7 +7,7 @@ const PORT = 3000;
 
 app.use(cors()); // cross origin resource sharing
 app.use(express.json());
-
+app.use("/", express.static("views"));
 app.use('/recipes', recipeRouter);
 
 app.listen(PORT, () => {

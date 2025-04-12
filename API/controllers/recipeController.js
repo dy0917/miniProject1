@@ -16,11 +16,11 @@ let recipes = [
 // exported to functions so they can be shared. Logic side
 
 
-export function getAllRecipes(req, res) {
+function getAllRecipes(req, res) {
     res.status(200).json(recipes);
 }
 
-export function getRecipeById(req, res) {
+ function getRecipeById(req, res) {
     const id = parseInt(req.params.id);
     const recipe = recipes.find(r => r.id === id);
 
@@ -33,7 +33,7 @@ export function getRecipeById(req, res) {
     }
 }
 
-export function createRecipe(req, res) {
+ function createRecipe(req, res) {
     const newRecipe = {
         id: recipes.length + 1,
         ...req.body
@@ -42,7 +42,7 @@ export function createRecipe(req, res) {
     res.status(201).json(newRecipe);  //adding new recipe with new identifier
 }
 
-export function updateRecipe(req, res) {
+ function updateRecipe(req, res) {
     const id = parseInt(req.params.id);
     const index = recipes.findIndex(r => r.id === id);
     
@@ -58,7 +58,7 @@ export function updateRecipe(req, res) {
     console.log(recipes[index])
 }
 
-export function deleteRecipe(req, res) {
+ function deleteRecipe(req, res) {
     const id = parseInt(req.params.id);
     const index = recipes.findIndex(r => r.id === id);
     console.log(recipes[index])
@@ -71,6 +71,14 @@ export function deleteRecipe(req, res) {
     } else {
         res.status(404).json({ message: 'Recipe not found' });
     }
+}
+
+module.exports ={
+    getAllRecipes,
+    getRecipeById,
+    createRecipe,
+    updateRecipe,
+    deleteRecipe
 }
 
 
